@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class FallingDrone : MonoBehaviour
 {
-
     private float fallDelay = 1f;
-    private float destroyDelay = 2f;
+    private float destroyDelay = 3f;
 
     [SerializeField] private Rigidbody2D rb;
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        //Debug.Log(collision.gameObject.name);
         if (collision.gameObject.CompareTag("Player"))
         {
             StartCoroutine(Fall());
@@ -23,18 +23,5 @@ public class FallingDrone : MonoBehaviour
         yield return new WaitForSeconds(fallDelay);
         rb.bodyType = RigidbodyType2D.Dynamic;
         Destroy(gameObject, destroyDelay);
-    }
-
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

@@ -9,10 +9,12 @@ public class VerticalPlatform : MonoBehaviour
     public float speed;
     public bool moveUp;
 
+    private Transform originalParent;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        originalParent = transform.parent;
     }
 
     // Update is called once per frame
@@ -33,6 +35,35 @@ public class VerticalPlatform : MonoBehaviour
         if (transform.position.y >= pointA.position.y)
         {
             moveUp = false;
+        }
+    }
+
+    public void SetParent(Transform newParent)
+    {
+        originalParent = transform.parent;
+        transform.parent = newParent;
+    }
+
+    public void ResetParent()
+    {
+        transform.parent = originalParent;
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        var platformMovement = other.collider.GetComponent<VerticalPlatform>();
+        if (platformMovement != null)
+        {
+            platformMovement.SetParent(transform);
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D other)
+    {
+        var platformMovement = other.collider.GetComponent<VerticalPlatform>();
+        if (platformMovement != null)
+        {
+            platformMovement.ResetParent();
         }
     }
 }

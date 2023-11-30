@@ -3,7 +3,11 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - MovingPlatform
+  - Barrier
+  - Checkpoint
+  - FallDetector
   layers:
   - Default
   - TransparentFX
@@ -38,6 +42,15 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Background
+    uniqueID: 909998763
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Obstacles
+    uniqueID: 2390582943
+    locked: 0
+  - name: Player
+    uniqueID: 429506867
     locked: 0
